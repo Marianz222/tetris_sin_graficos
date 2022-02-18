@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Tablero.h"
 #include <conio.h>
-#include <stdlib.h>
 
 using namespace std;
 
@@ -21,7 +20,7 @@ Tablero::Tablero() {
 
 void Tablero::dibujar_entrada() {
 	
-	cout << "Bienvenido a Tetris! Comienza el juego" << endl;
+	cout << "Bienvenido a Tetris!" << endl;
 	
 }
 
@@ -29,7 +28,7 @@ void Tablero::dibujar_cuadrilla() {
 	
 	for (int y; y < 10; y++) {
 		
-		for (int x; x < 25; x++) {
+		for (int x; x < 20; x++) {
 			
 			cout << cuadrilla[y][x];
 			
@@ -46,19 +45,15 @@ void Tablero::dibujar_puntaje(int puntos) {
 	
 	puntaje = puntos;
 	
-	while (true) {
-		
-		system ("CLS");
-		
-		cout << "Tu puntuación es: ";
-		cout << puntaje;
-		
-	}
-	
+	cout << "Tu puntuacion es: ";
+	//textcolor(3);
+	cout << puntaje << endl;
+
 }
 
 void Tablero::dibujar_controles() {
 	
+	cout << endl;
 	cout << "Mover la pieza: -A- para la izquierda, -D- para la derecha" << endl;
 	cout << "Acelerar pieza: -S-" << endl;
 	cout << "Salir del juego: -Z-" << endl;

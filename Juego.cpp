@@ -3,8 +3,8 @@
 #include "Tablero.h"
 #include "Pieza.h"
 #include <windows.h>
-#include <ctime>
 #include <conio.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -18,20 +18,27 @@ Juego::Juego() {
 
 void Juego::iniciar() {
 	
+	//Se crea el objeto de tablero
 	Tablero tablero_principal;
+	system("cls");
+	
+	tablero_principal.dibujar_cuadrilla();
+	tablero_principal.dibujar_entrada();
+	tablero_principal.dibujar_puntaje(puntos);
+	tablero_principal.dibujar_controles();
+	
+	gotoxy(15, 20);
+	cout << "A" << endl;
 	
 	while (!juego_terminado) {
-		
-		tablero_principal.dibujar_entrada();
-		tablero_principal.dibujar_cuadrilla();
-		tablero_principal.dibujar_puntaje(puntos);
-		tablero_principal.dibujar_controles();
-		
+	 
+	  tecla_presionada();
+	 
 	}
 	
 }
 
-char Juego::retornar_tecla() {
+int Juego::tecla_presionada() {
 	
 	while(true){
 		
@@ -43,19 +50,19 @@ char Juego::retornar_tecla() {
 				
 			case 'a': //Tecla de Movimiento a la izquierda
 				
-				return 'a';
+				//Incluir
 				
 				break;
 				
 			case 'd': //Tecla de Movimiento a la derecha
 				
-				return 'd';
+				//Incluir
 				
 				break;
 				
 			case 's': //Tecla de Movimiento hacia abajo
 				
-				return 's';
+				//Incluir
 				
 				break;
 				
@@ -68,5 +75,17 @@ char Juego::retornar_tecla() {
 		}
 		
 	}
+	
+}
+
+void Juego::gotoxy(int x, int y) {
+	
+	HANDLE hCon;
+	hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD dwPos;
+	dwPos.X = x;
+	dwPos.Y = y;
+
+	SetConsoleCursorPosition(hCon, dwPos);
 	
 }

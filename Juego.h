@@ -12,8 +12,11 @@ private:
 public:
 	
 	Juego();
-	char retornar_tecla();
+	int tecla_presionada();
 	void iniciar();
+	
+	//Función gotoxy reimplementada
+	void gotoxy(int x, int y);
 	
 };
 
