@@ -1,61 +1,63 @@
 #include <iostream>
 #include "Tablero.h"
+#include "Juego.h"
 #include <conio.h>
 
 using namespace std;
 
 Tablero::Tablero() {
 	
-	for (int y; y < 10; y++) {
+	//Ciclo inicial que asigna un espacio en blanco a toda la cuadrilla
+	
+	for (int x; x < 12; x++) {
 		
-		for (int x; x < 20; x++) {
+		for (int y; y < 24; y++) {
 			
-			cuadrilla[y][x] = 'O';
-			
-		}
-		
-	}
-	
-}
-
-void Tablero::dibujar_entrada() {
-	
-	cout << "Bienvenido a Tetris!" << endl;
-	
-}
-
-void Tablero::dibujar_cuadrilla() {
-	
-	for (int y; y < 10; y++) {
-		
-		for (int x; x < 20; x++) {
-			
-			cout << cuadrilla[y][x];
+			cuadrilla[x][y] = 'O';
 			
 		}
 		
 	}
 	
+	//Ciclos que marcan los límites de la cuadrilla
+	
+	for (int x; x < 12; x++) {
+		
+		cuadrilla[x][0] = 'X';
+		cuadrilla[x][21] = 'X';
+		
+	}
+	
+	for (int y; y < 22; y++) {
+		
+		cuadrilla[0][y] = 'X';
+		cuadrilla[15][y] = 'X';
+		
+	}
+	
+	//Ciclo que marca el suelo de la cuadrilla
+	
+	for (int y; y < 22; y++) {
+		
+		cuadrilla[15][y] = 'O';
+		
+	}
 	
 }
 
-void Tablero::dibujar_puntaje(int puntos) {
+void Tablero::mostrar() {
 	
-	int puntaje;
+	for (int x; x < 12; x++) {
+		
+		for (int y; y < 22; y++) {
+			
+			cout << cuadrilla[x][y] << " ";
+			
+		}
+		
+		cout << endl;
+		
+	}
 	
-	puntaje = puntos;
-	
-	cout << "Tu puntuacion es: ";
-	//textcolor(3);
-	cout << puntaje << endl;
-
-}
-
-void Tablero::dibujar_controles() {
-	
-	cout << endl;
-	cout << "Mover la pieza: -A- para la izquierda, -D- para la derecha" << endl;
-	cout << "Acelerar pieza: -S-" << endl;
-	cout << "Salir del juego: -Z-" << endl;
 	
 }

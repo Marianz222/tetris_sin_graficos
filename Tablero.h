@@ -5,15 +5,12 @@ class Tablero {
 	
 private:
 	
-	char cuadrilla[10][20];
+	int cuadrilla[12][22];
 	
 public:
 	
 	Tablero();	
-	void dibujar_entrada();
-	void dibujar_cuadrilla();
-	void dibujar_puntaje(int puntos);
-	void dibujar_controles();
+	void mostrar();
 	
 };
 

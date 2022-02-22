@@ -15,28 +15,52 @@ Juego::Juego() {
 	lineas_eliminadas = 0;
 	
 }
+////////////////////////////////
+//Métodos de Gestión del juego//
+////////////////////////////////
+
+//Método principal que inicia el juego
 
 void Juego::iniciar() {
 	
-	//Se crea el objeto de tablero
-	Tablero tablero_principal;
+	Tablero tablero;
+	Tablero();
+	
+	imprimir_entrada();
+	
+	system("pause");
 	system("cls");
 	
-	tablero_principal.dibujar_cuadrilla();
-	tablero_principal.dibujar_entrada();
-	tablero_principal.dibujar_puntaje(puntos);
-	tablero_principal.dibujar_controles();
+	tablero.mostrar();
 	
-	gotoxy(15, 20);
-	cout << "A" << endl;
+	imprimir_puntaje(puntos);
+	imprimir_controles();
 	
-	while (!juego_terminado) {
+	tecla_presionada();
+	
+	//while (!juego_terminado) {
+		
+	//	actualizar();
+		
+	//	tecla_presionada();
 	 
-	  tecla_presionada();
-	 
-	}
+	//}
 	
 }
+
+//Coloca una pieza al azar en la cuadrilla
+
+void Juego::generarPieza() {
+	
+	Pieza *pieza = new Pieza;
+	
+	pieza->imprimir();
+	
+}
+
+/////////////////////////////////
+//Métodos de Entrada del Jugador//
+/////////////////////////////////
 
 int Juego::tecla_presionada() {
 	
@@ -66,9 +90,25 @@ int Juego::tecla_presionada() {
 				
 				break;
 				
+			case 'e': //Tecla de Rotación izquierda
+				
+				//Incluir
+				
+				break;
+				
+			case 'r': //Tecla de Rotación derecha
+				
+				//Incluir
+				
+				break;
+				
 			case 'z': //Tecla para salir del juego
 				
+				juego_terminado = true;
+				
 				return 1;
+				
+				break;
 				
 			}
 			
@@ -78,13 +118,109 @@ int Juego::tecla_presionada() {
 	
 }
 
-void Juego::gotoxy(int x, int y) {
+////////////////////////////
+//Métodos de Actualización//
+////////////////////////////
+
+void Juego::actualizar() {
+	
+	//Variables de control
+	int cronometro = 0;
+	int cronometroSpawn = 0;
+	bool sinPieza = true;
+	
+	while(true) {
+		
+		cronometro++;
+		cronometroSpawn++;
+		
+		//Al pasar 1 segundo, la pieza actual baja automáticamente
+		
+		if ((cronometro = 1000)) {
+			
+			//Incluir
+			
+			cronometro = 0;
+			
+		}
+		
+		//Cada 3 segundos, se revisa si hay una pieza creada. Si no hay, se crea.
+		
+		if ((cronometroSpawn = 3000)) {
+			
+			while (sinPieza) {
+				
+				generarPieza();
+				
+				sinPieza = false;
+				cronometroSpawn = 0;
+				
+			}
+			
+		}
+		
+	}
+	
+}
+
+////////////////////////
+//Métodos de Impresión//
+////////////////////////
+
+//Muestra un texto como subtítulo
+
+void Juego::imprimir_entrada() {
+	
+	cout << "Bienvenido a Tetris!" << endl;
+	
+}
+
+///////////////////////////////////////////////////////////////////
+
+void Juego::imprimir_puntaje(int puntos) {
+	
+	int puntaje;
+	
+	puntaje = puntos;
+	
+	gotoxy(24,4);
+	cout << "Tu puntuacion es: ";
+	cout << puntaje << endl;
+	
+	gotoxy(24,5);
+	cout << "Lineas liberadas: ";
+	cout << lineas_eliminadas << endl;
+	
+}
+
+///////////////////////////////////////////////////////////////////
+
+void Juego::imprimir_controles() {
+	
+	cout << endl;
+	
+	gotoxy(24,7);
+	cout << "Mover la pieza: -A- para la izquierda, -D- para la derecha" << endl;
+	gotoxy(24,8);
+	cout << "Acelerar pieza: -S-" << endl;
+	gotoxy(24,9);
+	cout << "Rotar la pieza: -E- para la izquierda, -R- para la derecha" << endl;
+	gotoxy(24,10);
+	cout << "Salir del juego: -Z-" << endl;
+	
+}
+
+////////////////////////////////
+//Método gotoxy reimplementado//
+////////////////////////////////
+
+void Juego::gotoxy(int coordenadaX, int coordenadaY) {
 	
 	HANDLE hCon;
 	hCon = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD dwPos;
-	dwPos.X = x;
-	dwPos.Y = y;
+	dwPos.X = coordenadaX;
+	dwPos.Y = coordenadaY;
 
 	SetConsoleCursorPosition(hCon, dwPos);
 	
