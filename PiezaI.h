@@ -4,6 +4,8 @@
 
 class PiezaI : public Pieza{
 	
+	//Clase hija de "Pieza". Tiene la figura del palo
+	
 public:
 	
 	PiezaI();

@@ -3,6 +3,8 @@
 
 class Juego {
 	
+	//Clase principal. Gestiona aspectos de pantalla y de lógica general
+	
 private:
 	
 	bool juego_terminado;

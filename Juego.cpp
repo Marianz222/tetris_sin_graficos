@@ -3,24 +3,26 @@
 #include "Tablero.h"
 #include "Pieza.h"
 #include <windows.h>
-#include <conio.h>
+#include <conio2.h>
 #include <cstdlib>
 #include <time.h>
 
 #include "PiezaO.h"
+#include "PiezaI.h"
+#include "PiezaT.h"
+#include "PiezaS.h"
+#include "PiezaL.h"
 
 using namespace std;
 
 Juego::Juego() {
-	
-	srand (time(NULL));
 	
 	juego_terminado = false;
 	
 	puntos = 0;
 	lineas_eliminadas = 0;
 	
-	bool sinPieza = true;
+	sinPieza = true;
 	
 }
 ////////////////////////////////
@@ -60,31 +62,55 @@ void Juego::generarPieza() {
 	
 	int numeroAleatorio;
 	
-	numeroAleatorio = rand()% 4 + 1; 
-	
-	PiezaO *pieza = new PiezaO;
+	numeroAleatorio = rand()% 5 + 1; 
 	
 	switch (numeroAleatorio) {
 		
-	case 1:
+	case 1: {
+		
+		PiezaO *pieza = new PiezaO();
+		pieza->imprimir();
 		
 		break;
 		
-	case 2:
+		}
+	
+	case 2: {
+		
+		PiezaI *pieza = new PiezaI();
+		pieza->imprimir();
 		
 		break;
 		
-	case 3:
+	    }
+	
+	case 3: {
 		
-		break;
-		
-	case 4:
+		PiezaT *pieza = new PiezaT();
+		pieza->imprimir();
 		
 		break;
 		
 	}
 	
-	pieza->imprimir();
+	case 4: {
+		
+		PiezaS *pieza = new PiezaS();
+		pieza->imprimir();
+		
+		break;
+		
+	}
+	
+	case 5: {
+		
+		PiezaL *pieza = new PiezaL();
+		pieza->imprimir();
+		
+		break;
+		
+	}
+	}
 	
 }
 
@@ -140,8 +166,6 @@ int Juego::tecla_presionada() {
 				
 				return 1;
 				
-				break;
-				
 			}
 			
 		}
@@ -165,9 +189,9 @@ void Juego::actualizar() {
 		cronometro++;
 		cronometroSpawn++;
 		
-		//Al pasar 1 segundo, la pieza actual baja automáticamente
+		//Al pasar 2 segundos, la pieza actual baja automáticamente
 		
-		if ((cronometro = 1000)) {
+		if ((cronometro = 2000)) {
 			
 			//Incluir
 			

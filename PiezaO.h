@@ -4,6 +4,8 @@
 
 class PiezaO : public Pieza {
 	
+	//Clase hija de "Pieza". Tiene la figura del cuadrado
+	
 public:
 	
 	PiezaO();

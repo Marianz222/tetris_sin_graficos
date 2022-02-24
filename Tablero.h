@@ -3,6 +3,8 @@
 
 class Tablero {
 	
+	//Clase que crea el tablero (matriz) donde se colocan las piezas
+	
 private:
 	
 	char cuadrilla[20][22];

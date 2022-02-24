@@ -4,6 +4,8 @@
 
 class PiezaL : public Pieza {
 	
+	//Clase hija de "Pieza". Tiene la figura de la L
+	
 public:
 	
 	PiezaL();

@@ -22,19 +22,35 @@ Pieza::Pieza() {
 	
 }
 
-//Rota la pieza hacia la izquierda
+//Intercambia la figura de la imagen dependiendo de su estado, el cual en este se decrementa
 
 void Pieza::rotarIzquierda() {
 	
-	estado--;
+	if (estado > 0) {
+		
+		estado--;
+		
+	} else {
+		
+		estado = 4;
+		
+	}
 	
 }
 
-//Rota la pieza hacia la derecha
+//Intercambia la figura de la imagen dependiendo de su estado, el cual en este caso se incrementa
 
 void Pieza::rotarDerecha() {
 	
-	estado++;
+	if (estado < 4) {
+		
+		estado++;
+		
+	} else {
+		
+		estado = 0;
+		
+	}
 	
 }
 
