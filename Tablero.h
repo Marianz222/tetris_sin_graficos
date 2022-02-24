@@ -5,14 +5,15 @@ class Tablero {
 	
 private:
 	
-	int cuadrilla[12][22];
+	char cuadrilla[20][22];
 	
 public:
 	
-	Tablero();	
+	Tablero();
 	void mostrar();
+	char obtenerValor(int x, int y);
+	void modificarValor(int x, int y, char valor);
 	
 };
 
 #endif
-

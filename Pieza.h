@@ -1,7 +1,8 @@
 #ifndef PIEZA_H
 #define PIEZA_H
+#include "Juego.H"
 
-class Pieza {
+class Pieza : public Juego {
 	
 protected:
 	

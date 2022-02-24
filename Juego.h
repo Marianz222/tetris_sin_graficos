@@ -9,6 +9,7 @@ private:
 	bool juego_iniciado;
 	int puntos;
 	int lineas_eliminadas;
+	bool sinPieza;
 	
 public:
 	

@@ -1,7 +1,7 @@
-#include "PiezaS.h"
+#include "PiezaL.h"
 #include "Pieza.h"
 
-PiezaS::PiezaS() {
+PiezaL::PiezaL() {
 	
 	figura1[1][2] = 219;
 	figura1[2][2] = 219;

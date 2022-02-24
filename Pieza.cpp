@@ -7,9 +7,9 @@ Pieza::Pieza() {
 	
 	estado = 1;
 	
-	for (int a; a < 4; a++) {
+	for (int a = 0; a < 4; a++) {
 		
-		for (int b; b < 4; b++) {
+		for (int b = 0; b < 4; b++) {
 			
 			figura1[a][b] = ' ';
 			figura2[a][b] = ' ';
@@ -22,11 +22,15 @@ Pieza::Pieza() {
 	
 }
 
+//Rota la pieza hacia la izquierda
+
 void Pieza::rotarIzquierda() {
 	
 	estado--;
 	
 }
+
+//Rota la pieza hacia la derecha
 
 void Pieza::rotarDerecha() {
 	
@@ -34,11 +38,13 @@ void Pieza::rotarDerecha() {
 	
 }
 
+//Comentar
+
 void Pieza::imprimir() {
 	
-	for (int a; a < 4; a++) {
+	for (int a = 0; a < 4; a++) {
 		
-		for (int b; b < 4; b++) {
+		for (int b = 0; b < 4; b++) {
 			
 			switch (estado) {
 				
@@ -68,6 +74,8 @@ void Pieza::imprimir() {
 			}
 			
 		}
+		
+		cout << endl;
 		
 	}
 	

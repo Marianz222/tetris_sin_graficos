@@ -5,14 +5,22 @@
 #include <windows.h>
 #include <conio.h>
 #include <cstdlib>
+#include <time.h>
+
+#include "PiezaO.h"
 
 using namespace std;
 
 Juego::Juego() {
 	
+	srand (time(NULL));
+	
 	juego_terminado = false;
+	
 	puntos = 0;
 	lineas_eliminadas = 0;
+	
+	bool sinPieza = true;
 	
 }
 ////////////////////////////////
@@ -36,15 +44,13 @@ void Juego::iniciar() {
 	imprimir_puntaje(puntos);
 	imprimir_controles();
 	
-	tecla_presionada();
-	
-	//while (!juego_terminado) {
+	while (!juego_terminado) {
 		
-	//	actualizar();
+		actualizar();
 		
-	//	tecla_presionada();
+		tecla_presionada();
 	 
-	//}
+	}
 	
 }
 
@@ -52,7 +58,31 @@ void Juego::iniciar() {
 
 void Juego::generarPieza() {
 	
-	Pieza *pieza = new Pieza;
+	int numeroAleatorio;
+	
+	numeroAleatorio = rand()% 4 + 1; 
+	
+	PiezaO *pieza = new PiezaO;
+	
+	switch (numeroAleatorio) {
+		
+	case 1:
+		
+		break;
+		
+	case 2:
+		
+		break;
+		
+	case 3:
+		
+		break;
+		
+	case 4:
+		
+		break;
+		
+	}
 	
 	pieza->imprimir();
 	
@@ -106,6 +136,8 @@ int Juego::tecla_presionada() {
 				
 				juego_terminado = true;
 				
+				gotoxy(90,20);
+				
 				return 1;
 				
 				break;
@@ -127,7 +159,6 @@ void Juego::actualizar() {
 	//Variables de control
 	int cronometro = 0;
 	int cronometroSpawn = 0;
-	bool sinPieza = true;
 	
 	while(true) {
 		
