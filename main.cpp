@@ -2,6 +2,8 @@
 #include "Juego.H"
 #include <ctime>
 
+#include <windows.h>
+
 using namespace std;
 
 int main (int argc, char *argv[]) {
