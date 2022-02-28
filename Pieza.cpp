@@ -96,4 +96,3 @@ void Pieza::imprimir() {
 	}
 	
 }
-

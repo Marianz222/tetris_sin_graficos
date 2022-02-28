@@ -6,6 +6,7 @@ class Pieza : public Juego {
 	
 	//Clase madre para todas las variantes de pieza. Cuenta con la matriz en blanco para que las clases hijas dibujen sus figuras.
 	//Para la rotación, se almacenan 4 figuras diferentes y se alternan con las teclas E y R
+	//Hereda de la clase Juego el método gotoxy reimplementado, para manejar la impresión en pantalla
 	
 protected:
 	

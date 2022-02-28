@@ -6,11 +6,13 @@ class PiezaO : public Pieza {
 	
 	//Clase hija de "Pieza". Tiene la figura del cuadrado
 	
+private:
+	
+	//Hereda atributos
+	
 public:
 	
 	PiezaO();
-	
-private:
 	
 };
 

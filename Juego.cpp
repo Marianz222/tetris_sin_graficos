@@ -17,11 +17,16 @@ using namespace std;
 
 Juego::Juego() {
 	
-	juego_terminado = false;
+	//Variables de control de tiempo
+	int cronometro = 0;
+	int cronometroSpawn = 0;
 	
+	//Variables de control de puntaje
 	puntos = 0;
 	lineas_eliminadas = 0;
 	
+	//Variables lógicas
+	juego_terminado = false;
 	sinPieza = true;
 	
 }
@@ -43,22 +48,19 @@ void Juego::iniciar() {
 	
 	tablero.mostrar();
 	
-	imprimir_puntaje(puntos);
 	imprimir_controles();
 	
 	while (!juego_terminado) {
 		
 		actualizar();
 		
-		tecla_presionada();
-	 
 	}
 	
 }
 
 //Coloca una pieza al azar en la cuadrilla
 
-void Juego::generarPieza() {
+void Juego::generarPieza() { //Debería retornar la pieza creada
 	
 	int numeroAleatorio;
 	
@@ -120,53 +122,51 @@ void Juego::generarPieza() {
 
 int Juego::tecla_presionada() {
 	
-	while(true){
+	if(kbhit()) { 
 		
-		if(kbhit()) { 
+		int tecla = getch();
+		
+		switch(tecla) {
 			
-			int tecla = getch();
+		case 'a': //Tecla de Movimiento a la izquierda
 			
-			switch(tecla) {
-				
-			case 'a': //Tecla de Movimiento a la izquierda
-				
-				//Incluir
-				
-				break;
-				
-			case 'd': //Tecla de Movimiento a la derecha
-				
-				//Incluir
-				
-				break;
-				
-			case 's': //Tecla de Movimiento hacia abajo
-				
-				//Incluir
-				
-				break;
-				
-			case 'e': //Tecla de Rotación izquierda
-				
-				//Incluir
-				
-				break;
-				
-			case 'r': //Tecla de Rotación derecha
-				
-				//Incluir
-				
-				break;
-				
-			case 'z': //Tecla para salir del juego
-				
-				juego_terminado = true;
-				
-				gotoxy(90,20);
-				
-				return 1;
-				
-			}
+			//Incluir
+			
+			break;
+			
+		case 'd': //Tecla de Movimiento a la derecha
+			
+			//Incluir
+			
+			break;
+			
+		case 's': //Tecla de Movimiento hacia abajo
+			
+			//Incluir
+			
+			break;
+			
+		case 'e': //Tecla de Rotación izquierda
+			
+			break;
+			
+		case 'r': //Tecla de Rotación derecha
+			
+			//Incluir
+			
+			break;
+			
+		case 'z': //Tecla para salir del juego
+			
+			gotoxy(0,21);
+			
+			cout << "- Saliste del juego" << endl;
+			
+			gotoxy(0,21);
+			
+			juego_terminado = true;
+			
+			return 1;
 			
 		}
 		
@@ -180,37 +180,33 @@ int Juego::tecla_presionada() {
 
 void Juego::actualizar() {
 	
-	//Variables de control
-	int cronometro = 0;
-	int cronometroSpawn = 0;
+	imprimir_puntaje(puntos);
 	
-	while(true) {
+	tecla_presionada();
+	
+	cronometro++;
+	cronometroSpawn++;
+	
+	//Al pasar 2 segundos, la pieza actual baja automáticamente
+	
+	if ((cronometro = 2000)) {
 		
-		cronometro++;
-		cronometroSpawn++;
+		//Incluir
 		
-		//Al pasar 2 segundos, la pieza actual baja automáticamente
+		cronometro = 0;
 		
-		if ((cronometro = 2000)) {
+	}
+	
+	//Cada 3 segundos, se revisa si hay una pieza creada. Si no hay, se crea.
+	
+	if ((cronometroSpawn = 3000)) {
+		
+		while (sinPieza) {
 			
-			//Incluir
+			generarPieza();
 			
-			cronometro = 0;
-			
-		}
-		
-		//Cada 3 segundos, se revisa si hay una pieza creada. Si no hay, se crea.
-		
-		if ((cronometroSpawn = 3000)) {
-			
-			while (sinPieza) {
-				
-				generarPieza();
-				
-				sinPieza = false;
-				cronometroSpawn = 0;
-				
-			}
+			sinPieza = false;
+			cronometroSpawn = 0;
 			
 		}
 		

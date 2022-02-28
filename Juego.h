@@ -3,9 +3,12 @@
 
 class Juego {
 	
-	//Clase principal. Gestiona aspectos de pantalla y de lógica general
+	//Clase principal. Gestiona aspectos de pantalla, las otras clases y la lógica general
 	
 private:
+	
+	int cronometro;
+	int cronometroSpawn;
 	
 	bool juego_terminado;
 	bool juego_iniciado;
@@ -22,7 +25,7 @@ public:
 	
 	//Métodos de gestión del juego
 	void iniciar();
-	void generarPieza();
+	void generarPieza(); //Convertir a retorno tipo Pieza
 	
 	//Métodos de actualización
 	void actualizar();
