@@ -11,10 +11,10 @@ Pieza::Pieza() {
 		
 		for (int b = 0; b < 4; b++) {
 			
-			figura1[a][b] = ' ';
-			figura2[a][b] = ' ';
-			figura3[a][b] = ' ';
-			figura4[a][b] = ' ';
+			figura1[a][b] = false;
+			figura2[a][b] = false;
+			figura3[a][b] = false;
+			figura4[a][b] = false;
 			
 		}
 		
@@ -22,7 +22,7 @@ Pieza::Pieza() {
 	
 }
 
-//Intercambia la figura de la imagen dependiendo de su estado, el cual en este se decrementa
+//Intercambia la figura de la imagen dependiendo de su estado, el cual en este caso se decrementa
 
 void Pieza::rotarIzquierda() {
 	
@@ -49,49 +49,6 @@ void Pieza::rotarDerecha() {
 	} else {
 		
 		estado = 0;
-		
-	}
-	
-}
-
-//Comentar
-
-void Pieza::imprimir() {
-	
-	for (int a = 0; a < 4; a++) {
-		
-		for (int b = 0; b < 4; b++) {
-			
-			switch (estado) {
-				
-			case 1:
-				
-				cout << figura1[a][b];
-				
-				break;
-				
-			case 2:
-				
-				cout << figura2[a][b];
-				
-				break;
-				
-			case 3:
-				
-				cout << figura3[a][b];
-				
-				break;
-				
-			case 4:
-				
-				cout << figura4[a][b];
-				
-				break;
-			}
-			
-		}
-		
-		cout << endl;
 		
 	}
 	

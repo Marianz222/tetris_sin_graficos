@@ -12,6 +12,7 @@ private:
 	
 public:
 	
+	//Constructor en donde se establecen las figuras específicas de la pieza
 	PiezaT();
 	
 };

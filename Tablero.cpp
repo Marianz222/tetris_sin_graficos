@@ -13,24 +13,35 @@ Tablero::Tablero() {
 		
 		for (int y = 0; y < 22; y++) {
 			
-			cuadrilla[x][y] = ' ';
+			cuadrilla[x][y] = 0;
 			
 		}
 		
 	}
 	
+	///////////////////////////////////////////
+	/* Referencia de valores de la cuadrilla */
+	///////////////////////////////////////////
+	
+	// Valor "0" = Espacio vacío
+	// Valor "1" = Pared
+	// Valor "2" = Suelo
+	// Valor "3" = Pieza actual
+	// Valor "4" = Stack (Piezas acopladas al tablero)
+	
+	
 	//Ciclos que marcan los límites de la cuadrilla
 	
 	for (int x = 0; x < 20; x++) {
 		
-		cuadrilla[x][0] = 178;
-		cuadrilla[x][21] = 178;
+		cuadrilla[x][0] = 1;
+		cuadrilla[x][21] = 1;
 		
 	}
 	
 	for (int y = 0; y < 22; y++) {
 		
-		cuadrilla[0][y] = 178;
+		cuadrilla[0][y] = 1;
 		
 	}
 	
@@ -38,17 +49,15 @@ Tablero::Tablero() {
 	
 	for (int y = 0; y < 22; y++) {
 		
-		cuadrilla[19][y] = 176;
+		cuadrilla[19][y] = 2;
 		
 	}
 	
 }
 
-//Imprime la cuadrilla del tablero en pantalla
-
 void Tablero::mostrar() {
 	
-	for (int x = 0; x < 20; x++) {
+	for (int x = 0; x < 12; x++) {
 		
 		for (int y = 0; y < 22; y++) {
 			
@@ -72,7 +81,7 @@ char Tablero::obtenerValor(int x, int y) {
 
 //Modifica el valor de la posición de la cuadrilla pasada por parámetro
 
-void Tablero::modificarValor(int x, int y, char valor) {
+void Tablero::modificarValor(int x, int y, int valor) {
 	
 	cuadrilla[x][y] = valor;
 	

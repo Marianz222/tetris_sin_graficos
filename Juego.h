@@ -1,19 +1,24 @@
 #ifndef JUEGO_H
 #define JUEGO_H
 
+#include "Pieza.h"
+
 class Juego {
 	
 	//Clase principal. Gestiona aspectos de pantalla, las otras clases y la lógica general
 	
 private:
 	
-	int cronometro;
-	int cronometroSpawn;
+	int tiempoCaida;
+	int tiempoSpawn;
+	int tiempoImpresion;
 	
 	bool juego_terminado;
 	bool juego_iniciado;
+	
 	int puntos;
 	int lineas_eliminadas;
+	
 	bool sinPieza;
 	
 public:
@@ -21,11 +26,11 @@ public:
 	Juego();
 	
 	//Método de entrada del jugador
-	int tecla_presionada();
+	char obtenerTecla();
 	
 	//Métodos de gestión del juego
 	void iniciar();
-	void generarPieza(); //Convertir a retorno tipo Pieza
+	Pieza* generarPieza();
 	
 	//Métodos de actualización
 	void actualizar();
@@ -35,9 +40,15 @@ public:
 	bool colisionMuroDerecho();
 	
 	//Métodos de impresión en pantalla
-	void imprimir_entrada();
-	void imprimir_puntaje(int puntos);
-	void imprimir_controles();
+	void imprimirGeneral();
+	void imprimirEntrada();
+	void imprimirPuntaje(int puntos);
+	void imprimirControles();
+	void imprimirElementos();
+	
+	//Métodos de control de sistema
+	void pausarSistema();
+	void limpiarPantalla();
 	
 	//Función gotoxy reimplementada
 	void gotoxy(int coordenadaX, int coordenadaY);

@@ -1,6 +1,9 @@
 #include "PiezaO.h"
 #include "Pieza.h"
 
+const int alturaTablero = 12;
+const int anchuraTablero = 22;
+
 PiezaO::PiezaO() {
 	
 	//Caso de pieza especial. Todas sus figuras son iguales al rotarse
@@ -10,10 +13,10 @@ PiezaO::PiezaO() {
 	// - O O -
 	// - - - -
 	
-	figura1[1][2] = 219; figura2[1][2] = 219; figura3[1][2] = 219; figura4[1][2] = 219;
-	figura1[2][2] = 219; figura2[2][2] = 219; figura3[2][2] = 219; figura4[2][2] = 219;
-	figura1[1][1] = 219; figura2[1][1] = 219; figura3[1][1] = 219; figura4[1][1] = 219;
-	figura1[2][1] = 219; figura2[2][1] = 219; figura3[2][1] = 219; figura4[2][1] = 219;
+	figura1[1][2] = true; figura2[1][2] = true; figura3[1][2] = true; figura4[1][2] = true;
+	figura1[2][2] = true; figura2[2][2] = true; figura3[2][2] = true; figura4[2][2] = true;
+	figura1[1][1] = true; figura2[1][1] = true; figura3[1][1] = true; figura4[1][1] = true;
+	figura1[2][1] = true; figura2[2][1] = true; figura3[2][1] = true; figura4[2][1] = true;
 	
 }
 

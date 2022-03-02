@@ -18,8 +18,9 @@ using namespace std;
 Juego::Juego() {
 	
 	//Variables de control de tiempo
-	int cronometro = 0;
-	int cronometroSpawn = 0;
+	int tiempoCaida = 0;
+	int tiempoSpawn = 0;
+	int tiempoImpresion = 0;
 	
 	//Variables de control de puntaje
 	puntos = 0;
@@ -38,21 +39,55 @@ Juego::Juego() {
 
 void Juego::iniciar() {
 	
-	Tablero tablero;
-	Tablero();
+	//Tablero tablero;
 	
-	imprimir_entrada();
+	imprimirEntrada();
 	
-	system("pause");
-	system("cls");
+	pausarSistema();
+	limpiarPantalla();
 	
-	tablero.mostrar();
-	
-	imprimir_controles();
+	////DEBUG
+	//tablero.mostrar();
+	////DEBUG
 	
 	while (!juego_terminado) {
 		
-		actualizar();
+		imprimirPuntaje(puntos);
+		imprimirControles();
+		
+		obtenerTecla();
+		
+		tiempoCaida++;
+		tiempoSpawn++;
+		tiempoImpresion++;
+		
+		//Al pasar 2 segundos, la pieza actual baja automáticamente
+		
+		if ((tiempoCaida = 2000)) {
+			
+			//Incluir
+			
+			tiempoCaida = 0;
+			
+		}
+		
+		//Cada 3 segundos, se revisa si hay una pieza creada. Si no hay, se crea.
+		
+		if ((tiempoSpawn = 3000)) {
+			
+			while (sinPieza) {
+				
+				generarPieza();
+				
+				sinPieza = false;
+				
+				tiempoSpawn = 0;
+				
+			}
+			
+		}
+		
+		limpiarPantalla();
 		
 	}
 	
@@ -60,18 +95,17 @@ void Juego::iniciar() {
 
 //Coloca una pieza al azar en la cuadrilla
 
-void Juego::generarPieza() { //Debería retornar la pieza creada
+Pieza* Juego::generarPieza() {
 	
-	int numeroAleatorio;
+	int nAleatorio;
 	
-	numeroAleatorio = rand()% 5 + 1; 
+	nAleatorio = (rand()% 5) + 1; 
 	
-	switch (numeroAleatorio) {
+	switch (nAleatorio) {
 		
 	case 1: {
 		
-		PiezaO *pieza = new PiezaO();
-		pieza->imprimir();
+		return new PiezaO();
 		
 		break;
 		
@@ -79,8 +113,7 @@ void Juego::generarPieza() { //Debería retornar la pieza creada
 	
 	case 2: {
 		
-		PiezaI *pieza = new PiezaI();
-		pieza->imprimir();
+		return new PiezaI();
 		
 		break;
 		
@@ -88,8 +121,7 @@ void Juego::generarPieza() { //Debería retornar la pieza creada
 	
 	case 3: {
 		
-		PiezaT *pieza = new PiezaT();
-		pieza->imprimir();
+		return new PiezaT();
 		
 		break;
 		
@@ -97,8 +129,7 @@ void Juego::generarPieza() { //Debería retornar la pieza creada
 	
 	case 4: {
 		
-		PiezaS *pieza = new PiezaS();
-		pieza->imprimir();
+		return new PiezaS();
 		
 		break;
 		
@@ -106,12 +137,12 @@ void Juego::generarPieza() { //Debería retornar la pieza creada
 	
 	case 5: {
 		
-		PiezaL *pieza = new PiezaL();
-		pieza->imprimir();
+		return new PiezaL();
 		
 		break;
 		
 	}
+	
 	}
 	
 }
@@ -120,43 +151,27 @@ void Juego::generarPieza() { //Debería retornar la pieza creada
 //Métodos de Entrada del Jugador//
 /////////////////////////////////
 
-int Juego::tecla_presionada() {
+char Juego::obtenerTecla() {
 	
 	if(kbhit()) { 
 		
 		int tecla = getch();
 		
-		switch(tecla) {
+		switch (tecla) {
 			
-		case 'a': //Tecla de Movimiento a la izquierda
+		case 'a':
 			
-			//Incluir
+			//Incluir (Mueve a la izquierda)
 			
-			break;
+		case 'd':
 			
-		case 'd': //Tecla de Movimiento a la derecha
+			//Incluir (Mueve a la derecha)
 			
-			//Incluir
+		case 's':
 			
-			break;
+			//Incluir (Incrementa la velocidad de caída de la pieza)
 			
-		case 's': //Tecla de Movimiento hacia abajo
-			
-			//Incluir
-			
-			break;
-			
-		case 'e': //Tecla de Rotación izquierda
-			
-			break;
-			
-		case 'r': //Tecla de Rotación derecha
-			
-			//Incluir
-			
-			break;
-			
-		case 'z': //Tecla para salir del juego
+		case 'z':
 			
 			gotoxy(0,21);
 			
@@ -172,47 +187,15 @@ int Juego::tecla_presionada() {
 		
 	}
 	
+	return 0;
+	
 }
 
 ////////////////////////////
 //Métodos de Actualización//
 ////////////////////////////
 
-void Juego::actualizar() {
-	
-	imprimir_puntaje(puntos);
-	
-	tecla_presionada();
-	
-	cronometro++;
-	cronometroSpawn++;
-	
-	//Al pasar 2 segundos, la pieza actual baja automáticamente
-	
-	if ((cronometro = 2000)) {
-		
-		//Incluir
-		
-		cronometro = 0;
-		
-	}
-	
-	//Cada 3 segundos, se revisa si hay una pieza creada. Si no hay, se crea.
-	
-	if ((cronometroSpawn = 3000)) {
-		
-		while (sinPieza) {
-			
-			generarPieza();
-			
-			sinPieza = false;
-			cronometroSpawn = 0;
-			
-		}
-		
-	}
-	
-}
+//Incluir de ser necesario
 
 ////////////////////////
 //Métodos de Impresión//
@@ -220,7 +203,7 @@ void Juego::actualizar() {
 
 //Muestra un texto como subtítulo
 
-void Juego::imprimir_entrada() {
+void Juego::imprimirEntrada() {
 	
 	cout << "Bienvenido a Tetris!" << endl;
 	
@@ -228,7 +211,7 @@ void Juego::imprimir_entrada() {
 
 ///////////////////////////////////////////////////////////////////
 
-void Juego::imprimir_puntaje(int puntos) {
+void Juego::imprimirPuntaje(int puntos) {
 	
 	int puntaje;
 	
@@ -239,14 +222,14 @@ void Juego::imprimir_puntaje(int puntos) {
 	cout << puntaje << endl;
 	
 	gotoxy(24,5);
-	cout << "Lineas liberadas: ";
+	cout << "Lineas eliminadas: ";
 	cout << lineas_eliminadas << endl;
 	
 }
 
 ///////////////////////////////////////////////////////////////////
 
-void Juego::imprimir_controles() {
+void Juego::imprimirControles() {
 	
 	cout << endl;
 	
@@ -261,8 +244,20 @@ void Juego::imprimir_controles() {
 	
 }
 
+void Juego::pausarSistema() {
+	
+	system("pause");
+	
+}
+
+void Juego::limpiarPantalla() {
+	
+	system("cls");
+	
+}
+
 ////////////////////////////////
-//Método gotoxy reimplementado//
+//Función gotoxy reimplementada//
 ////////////////////////////////
 
 void Juego::gotoxy(int coordenadaX, int coordenadaY) {
