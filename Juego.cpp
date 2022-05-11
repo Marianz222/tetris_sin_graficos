@@ -39,16 +39,13 @@ Juego::Juego() {
 
 void Juego::iniciar() {
 	
-	//Tablero tablero;
-	
 	imprimirEntrada();
 	
 	pausarSistema();
-	limpiarPantalla();
+	system("cls");
 	
-	////DEBUG
-	//tablero.mostrar();
-	////DEBUG
+	Tablero tablero;
+	tablero.mostrar();
 	
 	while (!juego_terminado) {
 		
@@ -86,8 +83,6 @@ void Juego::iniciar() {
 			}
 			
 		}
-		
-		limpiarPantalla();
 		
 	}
 	
@@ -144,6 +139,8 @@ Pieza* Juego::generarPieza() {
 	}
 	
 	}
+	
+	return 0;
 	
 }
 
@@ -247,12 +244,6 @@ void Juego::imprimirControles() {
 void Juego::pausarSistema() {
 	
 	system("pause");
-	
-}
-
-void Juego::limpiarPantalla() {
-	
-	system("cls");
 	
 }
 

@@ -48,7 +48,6 @@ public:
 	
 	//Métodos de control de sistema
 	void pausarSistema();
-	void limpiarPantalla();
 	
 	//Función gotoxy reimplementada
 	void gotoxy(int coordenadaX, int coordenadaY);

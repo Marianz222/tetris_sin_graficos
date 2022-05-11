@@ -7,6 +7,16 @@ using namespace std;
 
 Tablero::Tablero() {
 	
+	///////////////////////////////////////////
+	/* Referencia de valores de la cuadrilla */
+	///////////////////////////////////////////
+	
+	// Valor "0" = Espacio vacío
+	// Valor "1" = Pared
+	// Valor "2" = Suelo
+	// Valor "3" = Pieza actual
+	// Valor "4" = Stack (Piezas acopladas al tablero)
+	
 	//Ciclo inicial que asigna un espacio en blanco a toda la cuadrilla
 	
 	for (int x = 0; x < 20; x++) {
@@ -18,17 +28,6 @@ Tablero::Tablero() {
 		}
 		
 	}
-	
-	///////////////////////////////////////////
-	/* Referencia de valores de la cuadrilla */
-	///////////////////////////////////////////
-	
-	// Valor "0" = Espacio vacío
-	// Valor "1" = Pared
-	// Valor "2" = Suelo
-	// Valor "3" = Pieza actual
-	// Valor "4" = Stack (Piezas acopladas al tablero)
-	
 	
 	//Ciclos que marcan los límites de la cuadrilla
 	
